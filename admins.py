@@ -2,7 +2,8 @@ from aiogram.filters import BaseFilter
 from aiogram.types import Message
 
 
-admin_ids = [375959767]
+admin_ids = [375959767, 505958678, 314310391]
+# , 505958678, 314310391
 
 class IsAdmin(BaseFilter):
     def __init__(self, admin_ids) -> None:
