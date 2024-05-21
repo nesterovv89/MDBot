@@ -1,5 +1,5 @@
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, KeyboardButton, ReplyKeyboardMarkup
-
+from aiogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,
+                           KeyboardButton, ReplyKeyboardMarkup)
 
 btn_1 = InlineKeyboardButton(text='О нас и о методиках', callback_data='about')
 btn_2 = InlineKeyboardButton(text='Наши направления', callback_data='methods')

@@ -1,31 +1,33 @@
 import asyncio
 import logging
+import os
 import re
-import keyboards as k
-import texts as t
-import media as m
-from aiogram import Bot, Dispatcher, types, Router
-from aiogram.types import CallbackQuery, Message, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
+
+from aiogram import Bot, F, Router, types
 from aiogram.enums import ParseMode
-from states import Mailing, Application
-from aiogram.fsm.context import FSMContext
-from aiogram.filters.command import Command
 from aiogram.filters import Command, StateFilter
+from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.memory import MemoryStorage
-import admins
-from config import config
-from db import profile, request, users, createtables
-from aiogram import F
+from aiogram.types import (CallbackQuery, KeyboardButton, Message,
+                           ReplyKeyboardMarkup, ReplyKeyboardRemove)
 from dotenv import load_dotenv
+
+import keyboards as k
+import media as m
+import texts as t
+from config import config
+from db import profile, request
+from states import Application
+
 load_dotenv()
 
 
 logging.basicConfig(level=logging.INFO)
 storage = MemoryStorage()
 
-admin_ids = [375959767]
-# 505958678, 314310391]
+admin_ids = os.getenv('ADMINS')
+admin_ids = list(map(int, admin_ids.split(',')))
 
 bot = Bot(token=config.bot_token.get_secret_value())
 router = Router()

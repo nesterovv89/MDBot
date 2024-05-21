@@ -1,16 +1,19 @@
-from aiogram.filters import BaseFilter
-from aiogram.types import Message
-from states import Mailing
-from aiogram import Bot, Dispatcher, types, Router
-from db import users
-from config import config
-from aiogram.fsm.context import FSMContext
-from aiogram.filters.command import Command
+import os
 
-admin_ids = [375959767]
+from aiogram import Bot, Router, types
+from aiogram.filters import BaseFilter
+from aiogram.filters.command import Command
+from aiogram.fsm.context import FSMContext
+from aiogram.types import Message
+
+from config import config
+from db import users
+from states import Mailing
+
+admin_ids = os.getenv('ADMINS')
+admin_ids = list(map(int, admin_ids.split(',')))
 bot = Bot(token=config.bot_token.get_secret_value())
 router = Router()
-# , 505958678, 314310391
 
 class IsAdmin(BaseFilter):
     def __init__(self, admin_ids) -> None:
